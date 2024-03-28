@@ -3,7 +3,7 @@ import notfound from '../../public/404.gif'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Notfound = () => {
-  const navigate = useNavigatew()
+  const navigate = useNavigate()
   return (
     
     <div className='absolute top-0 left-0 bg-black opacity-[1] w-screen h-screen flex justify-center items-center bg-black'>

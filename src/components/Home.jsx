@@ -12,6 +12,8 @@ const Home = () => {
   document.title = "KJ Movies | Homepage";
   const [wallpaper, setwallpaper] = useState(null);
   const [trending, settrending] = useState(null);
+  const [popular, setpopular] = useState(null);
+  const [tv, settv] = useState(null);
   const [category, setcategory] = useState("all");
 
   const GetHeaderWallaper = async () => {
@@ -38,9 +40,30 @@ const Home = () => {
     }
   };
 
+  const GetPopular = async () => {
+    try {
+      const { data } = await axios.get(`/movie/popular`);
+      console.log(data.results);
+      setpopular(data.results);
+    } catch (error) {
+      console.log("Error :", error);
+    }
+  };
+  const GetPopularTV = async () => {
+    try {
+      const { data } = await axios.get(`/tv/popular`);
+      console.log(data.results);
+      settv(data.results);
+    } catch (error) {
+      console.log("Error :", error);
+    }
+  };
+
   useEffect(() => {
     !wallpaper && GetHeaderWallaper();
     GetTrending();
+    GetPopular();
+    GetPopularTV();
   }, [category]);
 
   return wallpaper && trending ? (
@@ -60,6 +83,21 @@ const Home = () => {
         </div>
 
         <HorizontalCards data={trending} />
+        <div className="p-2 px-6 mt-5 flex justify-between">
+          <h1 className="text-4xl font-semibold text-zinc-400">
+            Popular Movies
+          </h1>{" "}
+        </div>
+
+        <HorizontalCards data={popular} />
+
+        <div className="p-2 px-6 mt-5 flex justify-between">
+          <h1 className="text-4xl font-semibold text-zinc-400">
+            Popular TV Series
+          </h1>{" "}
+        </div>
+
+        <HorizontalCards data={tv} />
         <Footer />
       </div>
       ;

@@ -37,7 +37,8 @@ const App = () => {
       >
         <h1 className="text-white ">
           <img className="flex items-center" src={image} alt="" />
-          This site is only available on desktop view.<br/> Switch to desktop view
+          This site is only available on desktop view.
+          <br /> Switch to desktop view
         </h1>
       </div>
     ); // Render nothing on mobile
